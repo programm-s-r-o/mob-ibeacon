@@ -3,19 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable name="presenter" type="cz.programm.mobalarm.ui.presenters.MainActivityPresenter"/>
+        <variable name="activity" type="cz.programm.mobalarm.ui.activities.MainActivity"/>
+    </data>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.activities.MainActivity">
 
-        <TextView
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_margin="20dip"
+            android:src="@drawable/ic_baseline_tap_and_play_24"
+            android:onClick="@{()->activity.toggleBeaconSearch()}"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
