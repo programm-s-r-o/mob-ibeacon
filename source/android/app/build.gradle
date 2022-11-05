@@ -58,4 +58,5 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-navigation:$koin_android_version"
 
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'org.altbeacon:android-beacon-library:2+'
 }
