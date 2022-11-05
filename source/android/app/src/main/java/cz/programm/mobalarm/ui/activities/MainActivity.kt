@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         permissionService.checkPermissions(this)
         binding.rvItems.layoutManager = LinearLayoutManager(this)
         binding.rvItems.adapter = presenter.adapter
+        presenter.attach(this)
     }
 
     fun toggleBeaconSearch() {
