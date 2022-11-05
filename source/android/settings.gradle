@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases/' }
+        maven { url "https://jitpack.io" }
+        maven {
+            url "https://maven.google.com"
+        }
+    }
+}
+rootProject.name = "MOB Alarm"
+include ':app'
