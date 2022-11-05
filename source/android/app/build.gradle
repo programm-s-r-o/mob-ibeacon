@@ -14,8 +14,8 @@ android {
 
     defaultConfig {
         applicationId "cz.programm.mobalarm"
-        minSdk 23
-        targetSdk 32
+        minSdk 24
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -59,4 +59,11 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'org.altbeacon:android-beacon-library:2+'
+
+    // Using JCenter
+    implementation 'eu.davidea:flexible-adapter:5.1.0'
+    implementation 'eu.davidea:flexible-adapter-ui:1.0.0'
+    implementation 'eu.davidea:flexible-adapter-livedata:1.0.0-b3'
+    // From 1.0.0-b3, library is compiled with data binding v2
+    implementation 'eu.davidea:flexible-adapter-databinding:1.0.0'
 }

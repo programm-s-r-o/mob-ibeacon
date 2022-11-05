@@ -3,6 +3,7 @@ package cz.programm.mobalarm.ui.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import cz.programm.mobalarm.R
 import cz.programm.mobalarm.databinding.ActivityMainBinding
 import cz.programm.mobalarm.services.PermissionService
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         permissionService.checkPermissions(this)
+        binding.rvItems.layoutManager = LinearLayoutManager(this)
+        binding.rvItems.adapter = presenter.adapter
     }
 
     fun toggleBeaconSearch() {

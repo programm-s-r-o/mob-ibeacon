@@ -9,6 +9,7 @@ import org.altbeacon.beacon.Region
 class BeaconService(val context: Context) {
     private val beaconManager = BeaconManager.getInstanceForApplication(context)
     private val region = Region("all-beacons-region", null, null, null)
+    lateinit var beaconChangeListener: (beaconId: String, distance: Double) -> Unit
 
     fun startListeningBeacons() {
         beaconManager.beaconParsers.clear()
@@ -21,6 +22,7 @@ class BeaconService(val context: Context) {
         beaconManager.addRangeNotifier { beacons, region ->
             beacons.forEach {
                 Log.d("BeaconService", "${it.id1} ; ${it.distance}")
+                beaconChangeListener?.invoke(it.id1.toHexString(), it.distance)
             }
         }
 
