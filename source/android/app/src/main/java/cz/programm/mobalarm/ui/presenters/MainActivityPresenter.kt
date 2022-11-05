@@ -1,18 +1,23 @@
 package cz.programm.mobalarm.ui.presenters
 
-import android.app.Activity
 import android.icu.util.GregorianCalendar
 import cz.programm.mobalarm.services.BeaconService
+import cz.programm.mobalarm.ui.activities.MainActivity
 import cz.programm.mobalarm.ui.items.BeaconItem
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import java.util.*
 
 class MainActivityPresenter(val beaconService: BeaconService) {
     var ranging = false
     val adapter = FlexibleAdapter<BeaconItem>(mutableListOf())
-    var activity: Activity? = null
-    private val refreshTimer = kotlin.concurrent.timer(period = 10000) {
+    var activity: MainActivity? = null
+    private val refreshTimer: Timer = kotlin.concurrent.timer(period = 10000) {
         activity?.runOnUiThread {
             adapter.notifyDataSetChanged()
+            if (adapter.currentItems.any { it.timeDifference > 30 }) {
+                activity?.showMobNotification()
+                stopTimer()
+            }
         }
     }
 
@@ -20,7 +25,9 @@ class MainActivityPresenter(val beaconService: BeaconService) {
         beaconService.beaconChangeListener = ::onBeacon;
     }
 
-    fun attach(activity: Activity){
+    private fun stopTimer() = refreshTimer.cancel()
+
+    fun attach(activity: MainActivity) {
         this.activity = activity
     }
 
@@ -33,6 +40,7 @@ class MainActivityPresenter(val beaconService: BeaconService) {
             ranging = true
         }
     }
+
 
     fun onBeacon(beaconId: String, distance: Double) {
         val item = adapter.currentItems.firstOrNull { it.beaconId == beaconId }

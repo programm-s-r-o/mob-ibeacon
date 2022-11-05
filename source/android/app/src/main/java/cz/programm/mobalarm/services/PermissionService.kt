@@ -8,7 +8,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 class PermissionService(val context: Context) {
-    val permissions = arrayOf(BLUETOOTH_ADMIN, BLUETOOTH, ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION)
+    val permissions = arrayOf(BLUETOOTH_ADMIN, BLUETOOTH, ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, VIBRATE)
 
 
     fun checkPermissions(activity: Activity) {
