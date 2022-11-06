@@ -34,9 +34,11 @@ class MainActivityPresenter(val beaconService: BeaconService) {
     fun toggleBeaconSearch() {
         if (ranging) {
             beaconService.stopListeningBeacons()
+            beaconService.stopTransmitting()
             ranging = false
         } else {
             beaconService.startListeningBeacons()
+            beaconService.startTransmitting()
             ranging = true
         }
     }
